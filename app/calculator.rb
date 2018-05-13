@@ -35,7 +35,8 @@ node_list = []
 puts "Checking if it is possible to get to final state
 This may take a while...\n"
 build_graph(starting_array, node_list)
-# puts "graph size = #{node_list.length} nodes"
+puts "graph size = #{node_list.length} nodes"
+node_list.each { |e| puts e.level.to_s }
 possible = node_list.include? Node.new(ending_array, false)
 
 if possible
@@ -43,6 +44,7 @@ if possible
 This may take a while..."
   start_time = Time.now
   matrix = build_adjacency_matrix(node_list)
+  puts matrix.to_s
   paths = []
   Graph::all_paths = []
   visited = Array.new(node_list.length) { |e| e = false }
@@ -64,11 +66,8 @@ This may take a while..."
     end_time = Time.now
     puts "Found #{Graph::all_paths.length} paths in #{end_time - start_time} seconds"
     min_path = Graph::all_paths.min_by { |x| x.length }
-
-    # puts "Found path with #{min_path.length} steps in #{end_time - start_time} seconds"
     puts 'Follow these steps to reach final state'
-    # binding.pry
-    min_path.each { |e| puts node_list[e].level.to_s }
+    min_path.each { |e| puts node_list[e].level.to_s[1..-2] }
   end
 else
   puts 'Not possible to reach the final state'

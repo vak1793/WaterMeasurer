@@ -6,10 +6,6 @@ class Node
     @neighbours = find_neighbours if calculate_neighbours
   end
 
-  def eql?(other)
-    level == other.level
-  end
-
   def ==(other)
     level == other.level
   end

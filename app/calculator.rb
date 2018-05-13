@@ -54,7 +54,8 @@ class Calculator
     possible = node_list.include? Node.new(ending_array, false)
 
     if possible
-      puts "Attempting to find path with least number of steps.\nThis may take a while..."
+
+      puts "Path exists from start to end configuration!\nAttempting to find path with least number of steps.\nThis may take a while..."
       start_time = Time.now
       matrix = build_adjacency_matrix(node_list)
       paths = []

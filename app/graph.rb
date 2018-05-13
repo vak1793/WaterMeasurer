@@ -32,14 +32,14 @@ module Graph
     visited[start_index] = true
     path.push(start_index)
     found = if start_index == end_index
-      Graph::all_paths.push(path.dup) unless Graph::all_paths.include? path
+      self.all_paths.push(path.dup) unless self.all_paths.include? path
     else
       neighbours = matrix[start_index].each_with_index.map { |e, i| i if e == 1 }.compact
       neighbours.each do |i|
         find_path(matrix, i, end_index, visited, path, start_time) if !visited[i]
       end
     end
-    return if (Time.now - start_time) > 300 || Graph::all_paths.length > 2500
+    return if (Time.now - start_time) > 300 || self.all_paths.length > 2500
 
     path.pop
     visited[start_index] = false
